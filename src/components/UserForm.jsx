@@ -9,8 +9,7 @@ const dropdownUsersSelector = (data) =>
     username,
   })) || [];
 
-export const UserForm = ({ showClear, onSearchUserTodos, onClear }) => {
-  console.log(showClear);
+export const UserForm = ({ hasInput, onSearchUserTodos, onClear }) => {
   const userQueryRef = useRef("");
 
   const { data, isLoading } = useGetUsers({ select: dropdownUsersSelector });
@@ -33,8 +32,13 @@ export const UserForm = ({ showClear, onSearchUserTodos, onClear }) => {
   return isLoading ? (
     <p>Loading...</p>
   ) : (
-    <StyledForm onSubmit={handleSubmitQuery}>
-      <StyledSelect ref={userQueryRef} defaultValue="">
+    <StyledForm onSubmit={handleSubmitQuery} aria-label="user search form">
+      <StyledSelect
+        ref={userQueryRef}
+        defaultValue=""
+        aria-required="true"
+        aria-label="user select dropdown"
+      >
         <option value="" disabled>
           Select a user
         </option>
@@ -42,9 +46,19 @@ export const UserForm = ({ showClear, onSearchUserTodos, onClear }) => {
           <option key={id} value={id}>{`${id} - ${username}`}</option>
         ))}
       </StyledSelect>
-      <StyledButton type="submit">Search</StyledButton>
-      {showClear && (
-        <StyledClearButton type="submit" onClick={handleClear}>
+      <StyledButton
+        type="submit"
+        aria-label="Search todos for selected user"
+        disabled={hasInput}
+      >
+        Search
+      </StyledButton>
+      {hasInput && (
+        <StyledClearButton
+          type="submit"
+          onClick={handleClear}
+          aria-label="Clear search and reset form"
+        >
           Clear
         </StyledClearButton>
       )}
@@ -84,6 +98,10 @@ const StyledButton = styled.button`
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.2s ease;
+
+  &:disabled {
+    cursor: not-allowed;
+  }
 
   &:hover {
     background-color: #6262d2;

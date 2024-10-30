@@ -4,7 +4,7 @@ import { todoColumnsConfig } from "./constant";
 import { Link } from "react-router-dom";
 
 export const Table = ({ data, isLoading }) => (
-  <StyledTable>
+  <StyledTable aria-labelledby="todos-table" role="table">
     <thead>
       <tr>
         {todoColumnsConfig.map(({ name, label, minWidth }) => (
@@ -36,7 +36,7 @@ const TableBody = ({ data }) => {
         <td>{id}</td>
         <td>{todo}</td>
         <td>{completed ? "Completed" : "Pending"}</td>
-        <StyledUserIdCell>
+        <StyledUserIdCell aria-label={`View details for user ${userId}`}>
           <Link to={`/users/${userId}`}>{userId}</Link>
         </StyledUserIdCell>
       </tr>

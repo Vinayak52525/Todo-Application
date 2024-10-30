@@ -54,7 +54,7 @@ const TodosDashboard = () => {
       <UserForm
         onSearchUserTodos={onSearchUserTodos}
         onClear={() => setUserQuery("")}
-        showClear={!!userQuery}
+        hasInput={!!userQuery}
       />
       <TodosTablePaginated {...todosTableProps} />
     </>

@@ -14,12 +14,20 @@ export const Footer = ({
     <tr>
       <td colSpan={todoColumnsConfig.length}>
         <PaginationControls>
-          <button onClick={onPrevious} disabled={skip === 0}>
+          <button
+            onClick={onPrevious}
+            disabled={skip === 0}
+            aria-label="skip to previous page"
+          >
             &#8678;
           </button>
           <label>
             Limit:
-            <select value={limit} onChange={onLimitChange}>
+            <select
+              value={limit}
+              onChange={onLimitChange}
+              aria-label="Per page limit for todos"
+            >
               {perPageCountMap.map((value) => (
                 <option key={value} value={value}>
                   {value}
@@ -27,7 +35,11 @@ export const Footer = ({
               ))}
             </select>
           </label>
-          <button onClick={onNext} disabled={skip + limit >= total}>
+          <button
+            onClick={onNext}
+            disabled={skip + limit >= total}
+            aria-label="skip to next page"
+          >
             &#8680;
           </button>
         </PaginationControls>
