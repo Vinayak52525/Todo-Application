@@ -1,22 +1,17 @@
-import { useCallback, useState } from "react";
+/* eslint-disable react/prop-types */
 import styled from "styled-components";
-import { useGetTodos } from "../hooks/useGetTodos";
 import { Table } from "./Table";
 import { Footer } from "./Footer";
 
-export const TodosTablePaginated = () => {
-  const [limit, setLimit] = useState(10);
-  const [skip, setSkip] = useState(0);
-  const { data, isLoading } = useGetTodos({ skip, limit });
-
-  const handleLimitChange = useCallback((event) => {
-    setLimit(Number(event.target.value));
-    setSkip(0);
-  }, []);
-
-  const handlePreviousPage = () => setSkip((prev) => Math.max(0, prev - limit));
-  const handleNextPage = () => setSkip((prev) => prev + limit);
-
+export const TodosTablePaginated = ({
+  data,
+  isLoading,
+  skip,
+  limit,
+  handleLimitChange,
+  handlePreviousPage,
+  handleNextPage,
+}) => {
   return (
     <>
       <StyledTableContainer>

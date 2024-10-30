@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 import styled from "styled-components";
 import { todoColumnsConfig } from "./constant";
+import { Link } from "react-router-dom";
 
 export const Table = ({ data, isLoading }) => (
   <StyledTable>
@@ -16,23 +17,36 @@ export const Table = ({ data, isLoading }) => (
     <tbody>
       {isLoading ? (
         <tr>
-          <Loader colSpan={todoColumnsConfig.length}>Loading...</Loader>
+          <CenteredDataCell colSpan={todoColumnsConfig.length}>
+            Loading...
+          </CenteredDataCell>
         </tr>
       ) : (
-        data.todos.map(({ id, userId, completed, todo }) => (
-          <tr key={id}>
-            <td>{id}</td>
-            <td>{todo}</td>
-            <td>{completed ? "Completed" : "Pending"}</td>
-            <td>
-              <a>{userId}</a>
-            </td>
-          </tr>
-        ))
+        <TableBody data={data} />
       )}
     </tbody>
   </StyledTable>
 );
+
+const TableBody = ({ data }) => {
+  const hasTodos = data?.todos?.length > 0;
+  return hasTodos ? (
+    data.todos.map(({ id, userId, completed, todo }) => (
+      <tr key={id}>
+        <td>{id}</td>
+        <td>{todo}</td>
+        <td>{completed ? "Completed" : "Pending"}</td>
+        <StyledUserIdCell>
+          <Link to={`/users/${userId}`}>{userId}</Link>
+        </StyledUserIdCell>
+      </tr>
+    ))
+  ) : (
+    <tr>
+      <CenteredDataCell colSpan={4}>No Todos Found</CenteredDataCell>
+    </tr>
+  );
+};
 
 const StyledTable = styled.table`
   border-collapse: collapse;
@@ -54,6 +68,11 @@ const StyledHeader = styled.th`
   z-index: 1;
 `;
 
-const Loader = styled.td`
+const CenteredDataCell = styled.td`
   text-align: center;
+`;
+
+const StyledUserIdCell = styled.td`
+  text-decoration: underline;
+  color: blue;
 `;

@@ -22,3 +22,5 @@ export const todoColumnsConfig = [
 ];
 
 export const perPageCountMap = [5, 10, 15, 20];
+export const defaultSkip = 0;
+export const defaultLimit = 10;

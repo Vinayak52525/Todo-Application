@@ -1,7 +1,9 @@
 import styled from "styled-components";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { createGlobalStyle } from "styled-components";
-import { TodosTablePaginated } from "./components";
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import TodosDashboard from "./pages/TodosDashboard";
+import UserDashboard from "./pages/UserDashboard";
 
 const queryClient = new QueryClient();
 
@@ -25,15 +27,27 @@ const GlobalStyle = createGlobalStyle`
 
   button {
     cursor: pointer;
+    user-select: none;
   }
 `;
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <TodosDashboard />,
+  },
+  {
+    path: "users/:userId",
+    element: <UserDashboard />,
+  },
+]);
 
 function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <GlobalStyle />
       <StyledAppWrapper>
-        <TodosTablePaginated />
+        <RouterProvider router={router} />
       </StyledAppWrapper>
     </QueryClientProvider>
   );

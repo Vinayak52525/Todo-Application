@@ -1,2 +1,2 @@
 export { TodosTablePaginated } from "./TodosTablePaginated";
-// export { UserForm } from "./UserForm";
+export { UserForm } from "./UserForm";
