@@ -1,8 +1,25 @@
-# React + Vite
+# Todos Dashboard
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A user-friendly web application that allows users to manage their todos and view user details. This application utilizes React for the frontend, styled-components for styling, and React Query for data fetching.
 
-Currently, two official plugins are available:
+## Demo
+view demo on vercel : https://todo-application-sigma-five.vercel.app/ 
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
+
+- **Todo Management**: View todos.
+- **User Search**: Select a user to filter todos associated with them.
+- **Pagination**: Navigate through todos with pagination controls.
+- **User Details**: Click on a user ID to view detailed information about that user.
+
+## Technologies Used
+
+- **React**: JavaScript library for building user interfaces.
+- **React Router**: For handling routing in the application.
+- **Styled Components**: For styling components using tagged template literals.
+- **React Query**: For data fetching, caching, and state management.
+
+## API Endpoints
+- **Todos**: https://dummyjson.com/todos
+- **Users**: https://dummyjson.com/users
+- **Single User**: https://dummyjson.com/users/{userId}
